@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class MainMenuController : MonoBehaviour
 
     public Transform centerPosition;
     public WebCom webCom;
+    public InputField roomID;
 
     private BetweenTransform inputFieldBetweenTransform;
     private BetweenTransform loadingScreen;
@@ -71,7 +74,7 @@ public class MainMenuController : MonoBehaviour
         LoadingScreen.To = centerPosition;
         LoadingScreen.OnFinish.AddListener(StartLoadingScreenAnimation);
         LoadingScreen.PlayForward();
-
+        InputFieldBetweenTransform.ResetToBeginning();
     }
 
     private void StartLoadingScreenAnimation()
@@ -81,9 +84,18 @@ public class MainMenuController : MonoBehaviour
 
     private IEnumerator LoadingScreenAnimation()
     {
-        yield return webCom.mIsServer;
+        webCom.JoinRoomButtonPressed(roomID.text);
 
+        yield return new WaitUntil((() => WebCom.isConnceted));
+
+        LoadingScreen.ResetToBeginning();
         Joystic.To = centerPosition;
         Joystic.PlayForward();
+    }
+
+    public void LeaveButton()
+    {
+        roomID.text = "";
+        Joystic.PlayReverse();
     }
 }
