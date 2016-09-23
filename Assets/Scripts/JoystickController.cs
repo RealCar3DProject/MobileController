@@ -58,12 +58,12 @@ public class JoystickController : MonoBehaviour
 
     public void Break()
     {
-        WebCom.carDataController.Break = true;
+        WebCom.carDataController.Break = 1;
     }
 
     public void ReleaseBreak()
     {
-        WebCom.carDataController.Break = false;
+        WebCom.carDataController.Break = 0;
 
     }
     public void SendBackwardCoolDown()

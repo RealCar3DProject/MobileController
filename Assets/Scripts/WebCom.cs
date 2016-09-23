@@ -85,6 +85,7 @@ public class WebCom : MonoBehaviour
 
         gyroDirection = Input.acceleration.x;
         gyroDirection = Mathf.Clamp(gyroDirection, -1, 1);
+        Debug.Log(gyroDirection);
         carDataController.gyro = gyroDirection;
         HandleNetwork();
     }

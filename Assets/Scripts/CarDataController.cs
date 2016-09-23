@@ -6,7 +6,7 @@
         public int chosenCarId;
         public bool forwardCoolDown;
         public bool backwordCoolDown;
-        public bool Break;
+        public int Break;
         public float gyro;
     }
 }
