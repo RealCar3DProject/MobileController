@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Byn.Net.Native;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -88,14 +89,15 @@ public class MainMenuController : MonoBehaviour
 
         yield return new WaitUntil((() => WebCom.isConnceted));
 
-        LoadingScreen.ResetToBeginning();
         Joystic.To = centerPosition;
         Joystic.PlayForward();
+        LoadingScreen.ResetToBeginning();
+
     }
 
     public void LeaveButton()
     {
         roomID.text = "";
-        Joystic.PlayReverse();
+        Joystic.ResetToBeginning();
     }
 }
